@@ -101,13 +101,71 @@ namespace ElBastard0.GameOfLife.Models.Environment
                 {
                     sb.Append(value ? GameSettings.AliveIcon : ' ');
                 }
-                sb.AppendLine(GameSettings.BorderIcon+"");
+                sb.AppendLine(GameSettings.BorderIcon + "");
             }
             sb.Append(borderX);
-            
-            Console.SetCursorPosition(0,0);
+
+            Console.SetCursorPosition(0, 0);
             Console.WriteLine(sb.ToString());
         }
 
+        public void Update(bool print = false)
+        {
+            var tempField = _field.ToDictionary(entry => entry.Key, entry => (IList<bool>)entry.Value.ToList());
+
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    if (_field[y][x])
+                    {
+                        tempField[y][x] = GetAliveNeighbors(x, y) is > 1 and <= 3;
+                    }
+                    else
+                    {
+                        tempField[y][x] = GetAliveNeighbors(x, y) == 3;
+                    }
+                }
+            }
+
+            _field = tempField;
+
+            if (print)
+            {
+                PrintGameField();
+            }
+        }
+
+        public void Initialize(int startPopulation = 100)
+        {
+            if (Width * Height <= startPopulation)
+                throw new ArgumentException("Start population can't be greater or equal to game field size.");
+
+            Random random = new Random();
+            for (int i = 0; i < startPopulation; i++)
+            {
+                var x = random.Next(0, Width);
+                var y = random.Next(0, Height);
+
+                if (_field[y][x])
+                    i--;
+                else
+                    _field[y][x] = true;
+            }
+        }
+
+        private int GetAliveNeighbors(int x, int y)
+        {
+            int counter = 0;
+            for (int i = y - 1 >= 0 ? y - 1 : y; i <= (y + 1 < Height ? y + 1 : y); i++)
+            {
+                for (int j = x - 1 >= 0 ? x - 1 : x; j <= (x + 1 < Width ? x + 1 : x); j++)
+                {
+                    if (!(i == y && j == x) && _field[i][j])
+                        counter++;
+                }
+            }
+            return counter;
+        }
     }
 }
