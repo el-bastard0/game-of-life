@@ -14,16 +14,14 @@ namespace ElBastard0.GameOfLife
         }
         static void Main(string[] args)
         {
-            IGameField<bool> test = new GameField(width: 200, heigth: 40);
-            
-            foreach (var key in test.Keys)
+            IGameField<bool> game = new GameField(width: 200, heigth: 45);
+            game.Initialize(2000);
+            game.PrintGameField();
+
+            while (true)
             {
-                for(int i = 0; i < test.Width; i++)
-                {
-                    test[key][i] = true;
-                    test.PrintGameField();
-                    Thread.Sleep(GameSettings.RefreshTimer);
-                }
+                game.Update(true);
+                Thread.Sleep(GameSettings.RefreshTimer);
             }
         }
     }

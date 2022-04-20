@@ -5,6 +5,6 @@
         public const string GameName = "Game of life";
         public const char BorderIcon = '\u2605';
         public const char AliveIcon = '\u25A0';
-        public const int RefreshTimer = 1;
+        public const int RefreshTimer = 100;
     }
 }
