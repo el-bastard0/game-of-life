@@ -1,7 +1,6 @@
 ﻿using CommandLine;
 using ElBastard0.GameOfLife.Models.Environment;
 using ElBastard0.GameOfLife.Options;
-using ElBastard0.GameOfLife.Utils;
 using System.Text;
 
 namespace ElBastard0.GameOfLife
@@ -17,7 +16,7 @@ namespace ElBastard0.GameOfLife
         static void Main(string[] args)
         {
             Parser.Default.ParseArguments<CliOptions>(args)
-                .WithParsed<CliOptions>(o =>
+                .WithParsed(o =>
                 {
                     IGameField<bool> game = new GameField(width: o.Width, heigth: o.Height);
                     game.Initialize(o.StartPopulation);

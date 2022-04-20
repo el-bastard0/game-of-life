@@ -3,7 +3,8 @@
     internal static class GameSettings
     {
         public const string GameName = "Game of life";
-        public const char BorderIcon = '\u2605';
-        public const char AliveIcon = '\u25A0';
+        public const char BorderXIcon = '\u25A0';
+        public const char BorderYIcon = '\u2588';
+        public const char AliveIcon = '\u2588';
     }
 }
