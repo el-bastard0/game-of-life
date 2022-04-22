@@ -30,17 +30,15 @@ jobs:
       - name: Install dependencies
         id: dotnet-restore
         if: steps.versionize.outcome == 'success'
-        run: dotnet restore
+        run: dotnet restore ./src/app/ElBastard0.GameOfLife.csproj
       - name: Build
         id: dotnet-build
         if: steps.dotnet-restore.outcome == 'success'
-        run: dotnet build --configuration Release --no-restore
-        working-directory: ./src
+        run: dotnet build --configuration Release --no-restore ./src/app/ElBastard0.GameOfLife.csproj
       - name: Publish
         id: dotnet-publish
         if: steps.dotnet-build.outcome == 'success'
-        run: dotnet publish
-        working-directory: ./src
+        run: dotnet publish ./src/app/ElBastard0.GameOfLife.csproj
       - name: Push changes to GitHub
         if: steps.dotnet-publish.outcome == 'success'
         uses: ad-m/github-push-action@master
