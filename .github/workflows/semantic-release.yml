@@ -38,7 +38,7 @@ jobs:
       - name: Publish
         id: dotnet-publish
         if: steps.dotnet-build.outcome == 'success'
-        run: dotnet publish ./src/app/ElBastard0.GameOfLife.csproj
+        run: dotnet publish -f net6.0 ./src/app/ElBastard0.GameOfLife.csproj
       - name: Push changes to GitHub
         if: steps.dotnet-publish.outcome == 'success'
         uses: ad-m/github-push-action@master
