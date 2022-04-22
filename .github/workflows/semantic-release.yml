@@ -27,10 +27,26 @@ jobs:
         if: steps.versionize.outcome != 'success'
         run: echo "Skipping publishing. No release required."
 
-      - name: Push changes to GitHub
+      - name: Install dependencies
+        id: dotnet-restore
         if: steps.versionize.outcome == 'success'
+        run: dotnet restore
+      - name: Build
+        id: dotnet-build
+        if: steps.dotnet-restore.outcome == 'success'
+        run: dotnet build --configuration Release --no-restore
+        working-directory: ./src
+      - name: Publish
+        id: dotnet-publish
+        if: steps.dotnet-build.outcome == 'success'
+        run: dotnet publish
+        working-directory: ./src
+      - name: Push changes to GitHub
+        if: steps.dotnet-publish.outcome == 'success'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
           tags: true
+      
+      
