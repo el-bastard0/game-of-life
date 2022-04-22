@@ -1,0 +1,36 @@
+name: Semantic release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-new-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install Versionize
+        run: dotnet tool install --global Versionize
+      - name: Setup git
+        run: |
+          git config --local user.name 'github-actions[bot]'
+          git config --local user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: Versionize Release
+        id: versionize
+        run: versionize --exit-insignificant-commits
+        continue-on-error: true
+
+      - name: No release required
+        if: steps.versionize.outcome != 'success'
+        run: echo "Skipping publishing. No release required."
+
+      - name: Push changes to GitHub
+        if: steps.versionize.outcome == 'success'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
