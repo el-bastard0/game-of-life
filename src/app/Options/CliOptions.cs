@@ -4,26 +4,25 @@ namespace ElBastard0.GameOfLife.Options
 {
     internal class CliOptions
     {
-        private int _startPopulation = 0;
+        private int? _startPopulation;
 
-        [Option('w', "width", Default = 200, HelpText = "Game field width")]
+        [Option('w', "width", Default = 100, HelpText = "Game field width")]
         public int Width { get; set; }
 
-        [Option('h', "height", Default = 45, HelpText = "Game field height")]
+        [Option('h', "height", Default = 40, HelpText = "Game field height")]
         public int Height { get; set; }
 
-        [Option('p', "population", HelpText = "Initial population")]
+        [Option('p', "population", HelpText = "(Default: Width * Height / 2) Initial population")]
         public int StartPopulation
         {
             get
             {
-                if (_startPopulation == 0)
-                {
-                    _startPopulation = Width * Height / 2;
-                }
-                return _startPopulation;
+                return _startPopulation ?? Width * Height / 2;
             }
-            set { _startPopulation = value; }
+            set
+            {
+                _startPopulation = value;
+            }
         }
 
         [Option('r', "refresh", Default = 100, HelpText = "Refresh cycle in ms")]

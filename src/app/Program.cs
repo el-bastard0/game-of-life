@@ -1,5 +1,5 @@
 ﻿using CommandLine;
-using ElBastard0.GameOfLife.Models.Environment;
+using ElBastard0.GameOfLife.Models;
 using ElBastard0.GameOfLife.Options;
 using System.Text;
 
@@ -18,16 +18,21 @@ namespace ElBastard0.GameOfLife
             Parser.Default.ParseArguments<CliOptions>(args)
                 .WithParsed(o =>
                 {
-                    IGameField<bool> game = new GameField(width: o.Width, heigth: o.Height);
-                    game.Initialize(o.StartPopulation);
-                    game.PrintGameField();
-
-                    while (true)
-                    {
-                        game.Update(true);
-                        Thread.Sleep(o.Refresh);
-                    }
+                    RunGame(o.Width, o.Height, o.StartPopulation, o.Refresh);
                 });
+        }
+
+        private static void RunGame(int width, int height, int population, int refresh)
+        {
+            IGame<bool> game = new Game(width: width, heigth: height);
+            game.Initialize(population);
+            game.PrintGameField();
+
+            while (true)
+            {
+                game.Update(true);
+                Thread.Sleep(refresh);
+            }
         }
     }
 }

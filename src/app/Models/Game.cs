@@ -3,15 +3,15 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using ElBastard0.GameOfLife.Utils;
 
-namespace ElBastard0.GameOfLife.Models.Environment
+namespace ElBastard0.GameOfLife.Models
 {
-    internal class GameField : IGameField<bool>
+    internal class Game : IGame<bool>
     {
         private IDictionary<int, IList<bool>> _field;
 
         public int Width { get; init; }
         public int Height { get; init; }
-
+        public GameState State { get; set; } = GameState.NONE;
         public ICollection<int> Keys => _field.Keys;
 
         public ICollection<IList<bool>> Values => _field.Values;
@@ -22,7 +22,7 @@ namespace ElBastard0.GameOfLife.Models.Environment
 
         public IList<bool> this[int key] { get => _field[key]; set => _field[key] = value; }
 
-        public GameField(int width = 100, int heigth = 100)
+        public Game(int width = 100, int heigth = 100)
         {
             Width = width;
             Height = heigth;
