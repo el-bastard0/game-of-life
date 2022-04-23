@@ -17,9 +17,9 @@ jobs:
         with:
           fetch-depth: '0'
       - name: Setup dotnet
-          uses: actions/setup-dotnet@v2
-          with:
-            dotnet-version: ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Install Versionize
         run: dotnet tool install --global Versionize
