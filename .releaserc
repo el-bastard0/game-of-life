@@ -1,0 +1,26 @@
+{
+    "branches": ["main"],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        [
+            "semantic-release-dotnet",
+            {
+                "paths": ["src/app/**.csproj"]
+            }
+        ],
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogFile": "CHANGELOG.md",
+                "changelogTitle": "# Semantic Versioning Changelog"
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+              "assets": ["CHANGELOG.md", "src/app/**.csproj"]
+            }
+          ]
+    ]
+}

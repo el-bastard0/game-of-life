@@ -1,4 +1,4 @@
-name: Semantic release
+name: Semantic version
 
 on:
   push:
@@ -6,61 +6,22 @@ on:
       - main
 
 jobs:
-  publish-new-version:
+  release:
+    name: Release
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet-version: [ '5.0.x', '6.0.x' ]
-        os: ['ubuntu-latest','windows-latest']
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          fetch-depth: '0'
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v2
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-
-      - name: Install Versionize
-        run: dotnet tool install --global Versionize
-      - name: Setup git
-        run: |
-          git config --local user.name 'github-actions[bot]'
-          git config --local user.email 'github-actions[bot]@users.noreply.github.com'
-      - name: Versionize Release
-        id: versionize
-        run: versionize --exit-insignificant-commits
-        continue-on-error: true
-
-      - name: No release required
-        if: steps.versionize.outcome != 'success'
-        run: echo "Skipping publishing. No release required."
-
+          node-version: 'lts/*'
       - name: Install dependencies
-        id: dotnet-restore
-        if: steps.versionize.outcome == 'success'
-        run: dotnet restore ./src/app/ElBastard0.GameOfLife.csproj
-      - name: Build
-        id: dotnet-build
-        if: steps.versionize.outcome == 'success'
-        run: dotnet build --configuration Release --no-restore ./src/app/ElBastard0.GameOfLife.csproj
-      - name: Publish
-        id: dotnet-publish
-        if: steps.versionize.outcome == 'success'
-        run: dotnet publish --configuration Release ./src/app/ElBastard0.GameOfLife.csproj
-
-      - name: Push changes to GitHub
-        if: steps.versionize.outcome == 'success'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          tags: true
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v2
-        if: steps.versionize.outcome == 'success'
-        with:
-          name: game-of-life
-          path: /home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/
-    
+        run: npm ci
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+        run: npx semantic-release
       
