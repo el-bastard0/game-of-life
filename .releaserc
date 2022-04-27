@@ -34,8 +34,8 @@
                 "assets": [
                     {   
                         "label": "win-x64",
-                        "name": "GameOfLife.win-x64.exe",
-                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/win-x64/publish/*.exe"
+                        "name": "GameOfLife.win-x64.dll",
+                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/win-x64/publish/*.dll"
                     },
                     {   
                         "label": "linux-x64",
