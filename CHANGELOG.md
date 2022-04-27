@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [0.1.6](https://github.com/el-bastard0/game-of-life/compare/v0.1.5...v0.1.6) (2022-04-27)
+
+
+### Bug Fixes
+
+* use dll for windows ([a8bf991](https://github.com/el-bastard0/game-of-life/commit/a8bf99189139d44f9aa3c1ec69ffea2bb6bf4de1))
+
 ## [0.1.5](https://github.com/el-bastard0/game-of-life/compare/v0.1.4...v0.1.5) (2022-04-27)
 
 
