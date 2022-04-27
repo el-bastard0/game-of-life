@@ -15,8 +15,16 @@
 
 Open the commandline of your choice and type
 
+### Linux
+
 ```sh
 dotnet <path>/<to>/<executable>/GameOfLife.<your os>.dll [-Options]
+```
+
+### Windows
+
+```sh
+<path>/<to>/<executable>/GameOfLife.<your os>.exe [-Options]
 ```
 
 ### Options

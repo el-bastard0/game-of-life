@@ -34,18 +34,18 @@
                 "assets": [
                     {   
                         "label": "win-x64",
-                        "name": "GameOfLife.win-x64.dll",
-                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/win-x64/publish/*.dll"
+                        "name": "GameOfLife.win-x64.exe",
+                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/win-x64/publish/*.exe"
                     },
                     {   
                         "label": "linux-x64",
                         "name": "GameOfLife.linux-x64.dll",
-                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/linux-x64/publish/*.dll"
+                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/linux-x64/publish/ElBastard0.GameOfLife"
                     },
                     {   
                         "label": "linux-arm64",
                         "name": "GameOfLife.linux-arm64.dll",
-                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/linux-arm64/publish/*.dll"
+                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/linux-arm64/publish/ElBastard0.GameOfLife"
                     }
                 ]
             }
