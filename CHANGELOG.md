@@ -1,5 +1,18 @@
 # Semantic Versioning Changelog
 
+# [0.2.0](https://github.com/el-bastard0/game-of-life/compare/v0.1.6...v0.2.0) (2022-04-27)
+
+
+### Bug Fixes
+
+* fixed build ([eb3fd34](https://github.com/el-bastard0/game-of-life/commit/eb3fd34fb32b943999a4772e22a3418da8681f8d))
+* minor layout fixes ([271b15c](https://github.com/el-bastard0/game-of-life/commit/271b15c8f1722a118bc0251fd1052b1d7bdcdac5))
+
+
+### Features
+
+* configure game field size and refresh rate via cli ([4cd70e7](https://github.com/el-bastard0/game-of-life/commit/4cd70e7cad3cdf88bb17aa38cae0db76e62abb9d))
+
 ## [0.1.6](https://github.com/el-bastard0/game-of-life/compare/v0.1.5...v0.1.6) (2022-04-27)
 
 

@@ -2,16 +2,14 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RuntimeIdentifiers>win-x64;linux-x64;linux-arm64</RuntimeIdentifiers>
-    <Version>0.1.6</Version>
+    <Version>0.2.0</Version>
     <Authors>el-bastard0</Authors>
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <Import Project="PublishAllRids.targets"/>
-
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="CommandLineParser" Version="2.8.0"/>
   </ItemGroup>
-
 </Project>
