@@ -18,7 +18,8 @@
         ],
         [
             "@semantic-release/exec", {
-                "publishCmd": "./utils/publish.sh"
+                "prepareCmd": "chmod u+x ./publish.sh",
+                "publishCmd": "./publish.sh"
           }
         ],        
         [
