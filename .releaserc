@@ -17,10 +17,34 @@
             }
         ],
         [
+            "@semantic-release/exec", {
+                "publishCmd": "./utils/publish.sh"
+          }
+        ],        
+        [
             "@semantic-release/git",
             {
               "assets": ["CHANGELOG.md", "src/app/**.csproj"]
             }
-          ]
+        ],
+        [
+            "@semantic-release/github",
+            {
+                "assets": [
+                    {   
+                        "label": "win-x64",
+                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/win-x64/publish/*.exe"
+                    },
+                    {   
+                        "label": "linux-x64",
+                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/linux-x64/publish/*.dll"
+                    },
+                    {   
+                        "label": "linux-arm64",
+                        "path": "/home/runner/work/game-of-life/game-of-life/src/app/bin/Release/net6.0/linux-arm64/publish/*.dll"
+                    }
+                ]
+            }
+        ]
     ]
 }
