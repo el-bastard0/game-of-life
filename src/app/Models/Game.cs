@@ -3,15 +3,15 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using ElBastard0.GameOfLife.Utils;
 
-namespace ElBastard0.GameOfLife.Models.Environment
+namespace ElBastard0.GameOfLife.Models
 {
-    internal class GameField : IGameField<bool>
+    internal class Game : IGame<bool>
     {
         private IDictionary<int, IList<bool>> _field;
 
         public int Width { get; init; }
         public int Height { get; init; }
-
+        public GameState State { get; set; } = GameState.NONE;
         public ICollection<int> Keys => _field.Keys;
 
         public ICollection<IList<bool>> Values => _field.Values;
@@ -22,7 +22,7 @@ namespace ElBastard0.GameOfLife.Models.Environment
 
         public IList<bool> this[int key] { get => _field[key]; set => _field[key] = value; }
 
-        public GameField(int width = 100, int heigth = 100)
+        public Game(int width = 100, int heigth = 100)
         {
             Width = width;
             Height = heigth;
@@ -92,16 +92,16 @@ namespace ElBastard0.GameOfLife.Models.Environment
         public void PrintGameField()
         {
             var sb = new StringBuilder();
-            var borderX = new string(GameSettings.BorderIcon, Width + 2);
+            var borderX = new string(GameSettings.BorderXIcon, Width*2 + 2);
             sb.AppendLine(borderX);
             foreach (var key in _field.Keys)
             {
-                sb.Append(GameSettings.BorderIcon);
+                sb.Append(GameSettings.BorderYIcon);
                 foreach (var value in _field[key])
                 {
-                    sb.Append(value ? GameSettings.AliveIcon : ' ');
+                    sb.Append(value ? $"{GameSettings.AliveIcon}{GameSettings.AliveIcon}" : "  ");
                 }
-                sb.AppendLine(GameSettings.BorderIcon + "");
+                sb.AppendLine(GameSettings.BorderYIcon + "");
             }
             sb.Append(borderX);
 
@@ -157,11 +157,21 @@ namespace ElBastard0.GameOfLife.Models.Environment
         private int GetAliveNeighbors(int x, int y)
         {
             int counter = 0;
-            for (int i = y - 1 >= 0 ? y - 1 : y; i <= (y + 1 < Height ? y + 1 : y); i++)
+
+            //for (int i = y > 0 ? y - 1 : y; i <= (y + 1 < Height ? y + 1 : y); i++)
+            //{
+            //    for (int j = x > 0 ? x - 1 : x; j <= (x + 1 < Width ? x + 1 : x); j++)
+            //    {
+            //        if (!(i == y && j == x) && _field[i][j])
+            //            counter++;
+            //    }
+            //}
+
+            for (int i = y - 1; i <= y + 1; i++)
             {
-                for (int j = x - 1 >= 0 ? x - 1 : x; j <= (x + 1 < Width ? x + 1 : x); j++)
+                for (int j = x - 1; j <= x + 1; j++)
                 {
-                    if (!(i == y && j == x) && _field[i][j])
+                    if (!(i == y && j == x) && _field[i >= 0 ? i < Height ? i : 0 : Height - 1][j >= 0 ? j < Width ? j : 0 : Width - 1])
                         counter++;
                 }
             }
