@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [0.1.4](https://github.com/el-bastard0/game-of-life/compare/v0.1.3...v0.1.4) (2022-04-27)
+
+
+### Bug Fixes
+
+* make publish script executable ([390681f](https://github.com/el-bastard0/game-of-life/commit/390681f19310c3379e5f703a922e6df9029dacf1))
+
 ## [0.1.3](https://github.com/el-bastard0/game-of-life/compare/v0.1.2...v0.1.3) (2022-04-27)
 
 
