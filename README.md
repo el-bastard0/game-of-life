@@ -16,7 +16,26 @@
 Open the commandline of your choice and type
 
 ```sh
-dotnet <path>/<to>/<executable>/GameOfLife.<your os>.dll
+dotnet <path>/<to>/<executable>/GameOfLife.<your os>.dll [-Options]
+```
+
+### Options
+
+Type `dotnet <path>/<to>/<executable>/GameOfLife.<your os>.dll --help` to open help screen.
+
+```sh
+
+  -w, --width         (Default: 100) Game field width
+
+  -h, --height        (Default: 40) Game field height
+
+  -p, --population    (Default: Width * Height / 2) Initial population
+
+  -r, --refresh       (Default: 100) Refresh cycle in ms
+
+  --help              Display this help screen.
+
+  --version           Display version information.
 ```
 
 ## License
