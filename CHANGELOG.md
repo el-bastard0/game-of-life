@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [0.1.3](https://github.com/el-bastard0/game-of-life/compare/v0.1.2...v0.1.3) (2022-04-27)
+
+
+### Bug Fixes
+
+* add dotnet build ([ecec03e](https://github.com/el-bastard0/game-of-life/commit/ecec03eebd04b619c2d30b147093b8bc2cf8bea9))
+
 ## [0.1.2](https://github.com/el-bastard0/game-of-life/compare/v0.1.1...v0.1.2) (2022-04-26)
 
 
