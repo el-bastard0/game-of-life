@@ -1,7 +1,0 @@
-<Project>
-    <PropertyGroup>
-		<TargetFrameworks>net6.0</TargetFrameworks>
-		<Version>0.0.1</Version>
-		<Authors>el-bastard0</Authors>
-    </PropertyGroup>
-</Project>

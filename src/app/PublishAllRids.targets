@@ -1,0 +1,26 @@
+<Project DefaultTargets="Build">
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+
+    <SelfContained>false</SelfContained>
+  </PropertyGroup>
+
+  <Target Name="PublishAllRids">
+    <ItemGroup>
+      <!-- Transform RuntimeIdentifiers property to item -->
+      <RuntimeIdentifierForPublish Include="$(RuntimeIdentifiers)" />
+
+      <!-- Transform RuntimeIdentifierForPublish items to project items to pass to MSBuild task -->
+      <ProjectToPublish Include="@(RuntimeIdentifierForPublish->'$(MSBuildProjectFullPath)')">
+        <AdditionalProperties>RuntimeIdentifier=%(RuntimeIdentifierForPublish.Identity)</AdditionalProperties>
+      </ProjectToPublish>
+    </ItemGroup>
+
+    <MSBuild Projects="@(ProjectToPublish)"
+             Targets="Publish"
+             BuildInParallel="true"
+             />
+  </Target>
+
+</Project>
