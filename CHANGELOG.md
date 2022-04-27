@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [0.1.5](https://github.com/el-bastard0/game-of-life/compare/v0.1.4...v0.1.5) (2022-04-27)
+
+
+### Bug Fixes
+
+* fixed asset name ([179d75a](https://github.com/el-bastard0/game-of-life/commit/179d75ab25c161fe17338e5ec89b91e9675725f0))
+
 ## [0.1.4](https://github.com/el-bastard0/game-of-life/compare/v0.1.3...v0.1.4) (2022-04-27)
 
 
